@@ -1,7 +1,7 @@
 #!/bin/bash
 #V0.2a Modified for sid
-cp ../sid.sh ./payload/ #copy dev version to payload folder
-cp ../sid.py ./payload/ #copy dev version to payload folder
+cp ../sid.sh ./payload/ #copy to payload folder
+cp ../sid.py ./payload/ #copy to payload folder
 cd payload
 tar cf ../payload.tar ./* #tar all the payload files
 cd ..
@@ -21,7 +21,7 @@ else
 fi
 chmod +x install_sid.sh #make install script executeable
 echo "install_sid.sh created"
-cp install_sid.sh ../ #copy installer to siddev folder
+cp install_sid.sh ../ #copy installer back to root folder
 
 
 
