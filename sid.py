@@ -2,7 +2,7 @@
 #Original Code Martin Bateman 2013
 #Modified by Simon Walters
 #GPLv2 applies
-#V0.5 28Oct13 for scratchgpio3
+#V0.54 28Oct13 for scratchgpio4
 
 import sys
 from socket import *
@@ -144,7 +144,7 @@ while 1:
     if (data.find("start sid" + myserial[-4:]) != -1):
         #os.system('sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py '+ str(repr(wherefrom[0])) +' &')
         #print shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py """ + str(repr(wherefrom[0])) + """"'""")
-        process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio/scratchgpio_handler3.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
+        process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
        
         blinkthread.set_sequence([2,2,2,0,0,0])
         time.sleep(30)
