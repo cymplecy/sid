@@ -33,6 +33,7 @@ class Blink(threading.Thread):
 
 
     def run(self):
+        os.system('sudo pkill -f scratchgpio')
         while self.toTerminate == False:
             #print self.sequence
             for i in range(len(self.sequence)):
@@ -142,9 +143,9 @@ while 1:
     print (data + " " + repr(wherefrom[0]))
 
     if (data.find("start sid" + myserial[-4:]) != -1):
-        #os.system('sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py '+ str(repr(wherefrom[0])) +' &')
+        os.system('sudo python /home/pi/scratchgpio/scratchgpio_handler3.py '+ str(repr(wherefrom[0])) +' &')
         #print shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py """ + str(repr(wherefrom[0])) + """"'""")
-        process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio/scratchgpio_handler3.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
+        # process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio/scratchgpio_handler3.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
        
         blinkthread.set_sequence([2,2,2,0,0,0])
         time.sleep(30)

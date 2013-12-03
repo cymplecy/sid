@@ -39,8 +39,10 @@ if [ ! -d "$HDIR" ]; then
     echo ""; echo "The home directory does not exist!";f_exit;
 fi
 
-#Not needed as directory should already exist from sgh install
+sudo rm -rf $HDIR/sid
 mkdir -p $HDIR/sid
+chown -R $USERID:$GROUPID $HDIR/sid
+
 
 cp sid.py $HDIR/sid
 
@@ -54,10 +56,15 @@ echo "#V0.5 re-used for launching sid.py" >> $HDIR/sid/sid.sh
 echo "sudo ps aux | grep 'python.*sid.py' | grep -v grep | awk '{print $2}' | xargs sudo kill -9 " >> $HDIR/sid/sid.sh
 echo "sudo python /home/pi/sid/sid.py" >> $HDIR/sid/sid.sh
 
-sudo chmod 4775 $HDIR/sid/sid.sh
+chown -R $USERID:$GROUPID $HDIR/sid
+chmod +x $HDIR/sid/sid.sh
 
+
+rm -rf $HDIR/.config/autostart/sid.desktop
+rm -rf $HDIR/Desktop/sid.desktop
 cp sid.desktop $HDIR/Desktop
 cp sid.desktop $HDIR/.config/autostart
+
 
 
 echo ""
