@@ -62,8 +62,11 @@ chmod +x $HDIR/sid/sid.sh
 
 rm -rf $HDIR/.config/autostart/sid.desktop
 rm -rf $HDIR/Desktop/sid.desktop
+
 cp sid.desktop $HDIR/Desktop
+sudo chown $USERID:$GROUPID $HDIR/Desktop/sid.desktop
 cp sid.desktop $HDIR/.config/autostart
+sudo chown $USERID:$GROUPID $HDIR/.config/autostart/sid.desktop
 
 
 
