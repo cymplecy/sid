@@ -7,7 +7,7 @@
 #Version F 13Oct12 – rem out rpi.gpio as now included in Raspbian
 #Version G 20Mar13 - Allow otheruser option on commandline (Tnever/meltwater)
 #Version H 24Mar13 - correct newline issues
-#Version 1.0 3Aug13 - modified for use to deploy Remote Scratch Interface Device code
+#Version 1.1 5Dec13 - make all files be owned by normal user
 f_exit(){
 echo ""
 echo "Usage:"
@@ -39,8 +39,10 @@ if [ ! -d "$HDIR" ]; then
     echo ""; echo "The home directory does not exist!";f_exit;
 fi
 
-#Not needed as directory should already exist from sgh install
+sudo rm -rf $HDIR/sid
 mkdir -p $HDIR/sid
+chown -R $USERID:$GROUPID $HDIR/sid
+
 
 cp sid.py $HDIR/sid
 
@@ -51,13 +53,21 @@ echo "#Version 0.2 - add in & to allow simulatenous running of handler and Scrat
 echo "#Version 0.3 - change sp launches rsc.sb from \"/home/pi/Documents/Scratch Projects\"" >> $HDIR/sid/sid.sh
 echo "#Version 0.4 - 20Mar13 meltwater - change to use provided name for home" >> $HDIR/sid/sid.sh
 echo "#V0.5 re-used for launching sid.py" >> $HDIR/sid/sid.sh
-echo "sudo ps aux | grep 'python.*sid.py' | grep -v grep | awk '{print $2}' | xargs sudo kill -9 " >> $HDIR/sid/sid.sh
+echo "sudo pkill -f sid.py" >> $HDIR/sid/sid.sh
 echo "sudo python /home/pi/sid/sid.py" >> $HDIR/sid/sid.sh
 
-sudo chmod 4775 $HDIR/sid/sid.sh
+chown -R $USERID:$GROUPID $HDIR/sid
+chmod +x $HDIR/sid/sid.sh
+
+
+rm -rf $HDIR/.config/autostart/sid.desktop
+rm -rf $HDIR/Desktop/sid.desktop
 
 cp sid.desktop $HDIR/Desktop
+sudo chown $USERID:$GROUPID $HDIR/Desktop/sid.desktop
 cp sid.desktop $HDIR/.config/autostart
+sudo chown $USERID:$GROUPID $HDIR/.config/autostart/sid.desktop
+
 
 
 echo ""

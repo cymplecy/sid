@@ -3,6 +3,7 @@
 #Modified by Simon Walters
 #GPLv2 applies
 #V0.54 28Oct13 for scratchgpio4
+#V0.6 5Dec13 - change patterns to SID and OK and use os.system call to launch scratchgpio
 
 import sys
 from socket import *
@@ -114,7 +115,7 @@ s.settimeout(int(float(timeout)))
 os.system("echo none >/sys/class/leds/led0/trigger")
 
 blinkthread = Blink(0.2,0.2) 
-blinkthread.set_sequence([1,1,1,0,0,0])
+blinkthread.set_sequence([1,1,1,0,0,0,1,1,0,0,0,2,1,1,0,0,0,0,0])
       
 blinkthread.start()
 
@@ -142,11 +143,19 @@ while 1:
     print (data + " " + repr(wherefrom[0]))
 
     if (data.find("start sid" + myserial[-4:]) != -1):
-        #os.system('sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py '+ str(repr(wherefrom[0])) +' &')
+        os.system('sudo pkill -f scratchgpio')
+        os.system('sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py '+ str(repr(wherefrom[0])) +' &')
         #print shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py """ + str(repr(wherefrom[0])) + """"'""")
-        process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
-       
-        blinkthread.set_sequence([2,2,2,0,0,0])
+        #process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
+        print "stop blinking"
+        # try:
+            # blinkthread.stop()
+            # print "blinking stopped"
+        # except:
+            # pass
+        # print "restart blinking"
+        blinkthread.set_sequence([2,2,2,0,0,0,2,1,2,0,0,0,0,0,0,0,0,0,0])
+        #blinkthread.start()
         time.sleep(30)
         break
 
