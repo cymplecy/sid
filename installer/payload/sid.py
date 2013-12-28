@@ -4,6 +4,7 @@
 #GPLv2 applies
 #V0.54 28Oct13 for scratchgpio4
 #V0.6 5Dec13 - change patterns to SID and OK and use os.system call to launch scratchgpio
+#V0.7 28Dec13 - cope with plus version vs standard
 
 import sys
 from socket import *
@@ -144,7 +145,7 @@ while 1:
 
     if (data.find("start sid" + myserial[-4:]) != -1):
         os.system('sudo pkill -f scratchgpio')
-        os.system('sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py '+ str(repr(wherefrom[0])) +' &')
+        os.system('sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py '+ str(repr(wherefrom[0])) +' standard &')
         #print shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py """ + str(repr(wherefrom[0])) + """"'""")
         #process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
         print "stop blinking"
@@ -158,6 +159,23 @@ while 1:
         #blinkthread.start()
         time.sleep(30)
         break
+        
+    if (data.find("start sidplus" + myserial[-4:]) != -1):
+        os.system('sudo pkill -f scratchgpio')
+        os.system('sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py '+ str(repr(wherefrom[0])) +' &')
+        #print shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py """ + str(repr(wherefrom[0])) + """"'""")
+        #process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
+        print "stop blinking"
+        # try:
+            # blinkthread.stop()
+            # print "blinking stopped"
+        # except:
+            # pass
+        # print "restart blinking"
+        blinkthread.set_sequence([2,2,2,0,0,0,2,1,2,0,0,0,0,0,0,0,0,0,0])
+        #blinkthread.start()
+        time.sleep(30)
+        break        
 
 
 try:
