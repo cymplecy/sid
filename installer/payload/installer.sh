@@ -8,6 +8,7 @@
 #Version G 20Mar13 - Allow otheruser option on commandline (Tnever/meltwater)
 #Version H 24Mar13 - correct newline issues
 #Version 1.1 5Dec13 - make all files be owned by normal user
+#V1.2 16jan14 - create autostart dir if not existing
 f_exit(){
 echo ""
 echo "Usage:"
@@ -59,6 +60,11 @@ echo "sudo python /home/pi/sid/sid.py" >> $HDIR/sid/sid.sh
 chown -R $USERID:$GROUPID $HDIR/sid
 chmod +x $HDIR/sid/sid.sh
 
+mkdir -p $HDIR/.config
+chown -R $USERID:$GROUPID $HDIR/.config
+
+mkdir -p $HDIR/.config/autostart
+chown -R $USERID:$GROUPID $HDIR/.config/autostart
 
 rm -rf $HDIR/.config/autostart/sid.desktop
 rm -rf $HDIR/Desktop/sid.desktop
