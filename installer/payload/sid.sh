@@ -3,5 +3,6 @@
 #Version 0.3 - change sp launches rsc.sb from "/home/pi/Documents/Scratch Projects"
 #Version 0.4 - 20Mar13 meltwater - change to use provided name for home
 #V0.5 re-used for launching sid.py
-sudo ps aux | grep 'python.*sid.py' | grep -v grep | awk '{print $2}' | xargs sudo kill -9 
+#V5.0 for sgh5
+sudo pkill -f sid.py 
 sudo python /home/pi/sid/sid.py

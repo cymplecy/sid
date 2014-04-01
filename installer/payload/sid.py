@@ -145,7 +145,7 @@ while 1:
 
     if (data.find("start sid" + myserial[-4:]) != -1):
         os.system('sudo pkill -f scratchgpio')
-        os.system('sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py '+ str(repr(wherefrom[0])) +' standard &')
+        os.system('sudo python /home/pi/scratchgpio5/scratchgpio_handler5.py '+ str(repr(wherefrom[0])) +' standard &')
         #print shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py """ + str(repr(wherefrom[0])) + """"'""")
         #process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
         print "stop blinking"
@@ -162,7 +162,7 @@ while 1:
         
     if (data.find("start sidplus" + myserial[-4:]) != -1):
         os.system('sudo pkill -f scratchgpio')
-        os.system('sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py '+ str(repr(wherefrom[0])) +' &')
+        os.system('sudo python /home/pi/scratchgpio5/scratchgpio_handler5.py '+ str(repr(wherefrom[0])) +' &')
         #print shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py """ + str(repr(wherefrom[0])) + """"'""")
         #process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
         print "stop blinking"
