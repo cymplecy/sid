@@ -79,3 +79,9 @@ sudo chown $USERID:$GROUPID $HDIR/.config/autostart/sid.desktop
 echo ""
 echo ""
 echo "Finished installing Scratch Interface Device software"
+echo  ""
+echo "Please make a note of this number"
+echo cat /proc/cpuinfo | grep Serial | tail -c 5
+
+echo "(it is the last 4 digits of your Pi serial number)"
+echo "as it will be needed to allow you to connect to this Pi from your main computer"
