@@ -1,9 +1,11 @@
 #!/bin/bash
 #V0.2a Modified for sid
-cp ../sid.sh ./payload/ #copy to payload folder
-cp ../sid.py ./payload/ #copy to payload folder
-cd payload
-tar cf ../payload.tar ./* #tar all the payload files
+cp $HOME/sghdev/sid/sid.sh $HOME/sghdev/sid/installer/payload
+cp $HOME/sghdev/sid/sid.py $HOME/sghdev/sid/installer/payload
+
+
+cd $HOME/sghdev/sid/installer/payload
+tar -cf ../payload.tar ./* #tar all the payload files
 cd ..
 
 if [ -e "payload.tar" ]; then
@@ -21,8 +23,8 @@ else
 fi
 chmod +x install_sid.sh #make install script executeable
 echo "install_sid.sh created"
-cp install_sid.sh ../ #copy installer back to root folder
-
+cp install_sid.sh $HOME/sghdev/sid #copy installer to main folder
+cd $HOME/sghdev/sid
 
 
 exit 0
