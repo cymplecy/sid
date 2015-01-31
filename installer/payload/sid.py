@@ -7,6 +7,7 @@
 #V0.7 28Dec13 - cope with plus version vs standard
 #V0.8 12Ec15- updated for SGH6
 #V0.81 13dec14 - updated for SGH6 main release
+# 31Jan15 updated to V7
 
 import sys
 from socket import *
@@ -147,7 +148,7 @@ while 1:
 
     if (data.find("start sid" + myserial[-4:]) != -1):
         os.system('sudo pkill -f scratchgpio')
-        os.system('sudo python /opt/scratchgpio6/scratchgpio_handler6.py '+ str(repr(wherefrom[0])) +' standard &')
+        os.system('sudo python /opt/scratchgpio7/scratchgpio_handler7.py '+ str(repr(wherefrom[0])) +' standard &')
         #print shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py """ + str(repr(wherefrom[0])) + """"'""")
         #process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
         print "stop blinking"
@@ -164,7 +165,7 @@ while 1:
         
     if (data.find("start sidplus" + myserial[-4:]) != -1):
         os.system('sudo pkill -f scratchgpio')
-        os.system('sudo python /opt/scratchgpio6/scratchgpio_handler6.py '+ str(repr(wherefrom[0])) +' &')
+        os.system('sudo python /opt/scratchgpio7/scratchgpio_handler7.py '+ str(repr(wherefrom[0])) +' &')
         #print shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/simplesi_scratch_handler/scratch_gpio_handler2.py """ + str(repr(wherefrom[0])) + """"'""")
         #process = subprocess.Popen(shlex.split("""x-terminal-emulator -e 'bash -c "sudo python /home/pi/scratchgpio4/scratchgpio_handler4.py """ + str(repr(wherefrom[0])) + """"'"""), stdout=subprocess.PIPE)
         print "stop blinking"
